@@ -20,7 +20,8 @@
         <button ng-click="createUser()">Register</button>
       </p> 
     </div>
-    <div ng-controller="ReadingsController">
+    <div ng-controller="ReadingsController" ng-init="init()">
+      <p ng-bind="initState"></p>
       <h3>Add reading</h3>
       <p>
        Date:
@@ -30,7 +31,7 @@
        <button ng-click="addReading()">Add</button>
       </p>
 
-      <ul ng-repeat="reading in stepsReadings">
+      <ul ng-repeat="reading in stepsData">
          <li>{{reading.readingDate}}:  {{reading.stepsCount}}</li>
       </ul>
     </div>

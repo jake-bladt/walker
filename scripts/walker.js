@@ -57,10 +57,16 @@ app.controller('ReadingsController', function($scope, $firebase) {
   $scope.readingDate = '20120101';
   $scope.stepsCount = '7415';
 
+  $scope.initState = "idle";
+
+  $scope.init = function() {
+    $scope.initState = "ran";
+    $scope.stepsData = app.userHive.child('steps_data');
+  };
+
   $scope.addReading = function() {
     if(app.userHive) {
-      steps_data = app.userHive.child('steps_data');
-      steps_data.push({
+      $scope.stepsData.push({
         readingDate: $scope.readingDate,
         stepsCount:  $scope.stepsCount
       });    	

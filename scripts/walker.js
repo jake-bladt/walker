@@ -63,6 +63,7 @@ app.controller('ReadingsController', function($scope, $firebase) {
       $scope.stepsSource.$on('loaded', loadStepsData);
       $scope.stepsSource.$on('change', loadStepsData);
     }
+    loadStepsData();
   };
 
   function loadStepsData() {

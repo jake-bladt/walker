@@ -57,16 +57,23 @@ app.controller('ReadingsController', function($scope, $firebase) {
   $scope.readingDate = '20120101';
   $scope.stepsCount = '7415';
 
-  $scope.initState = "idle";
-
   $scope.init = function() {
-    $scope.initState = "ran";
-    $scope.stepsData = app.userHive.child('steps_data');
+    if(app.loggedInUser) {
+      $scope.stepsSource = app.getUserHive(app.loggedInUser).child('steps_data');
+      $scope.stepsSource.$on('loaded', loadStepsData);
+      $scope.stepsSource.$on('change', loadStepsData);
+    }
   };
+
+  function loadStepsData() {
+    $scope.stepsData = [
+      {readingDate: '20120101', stepsCount: '6100' }
+    ];
+  }
 
   $scope.addReading = function() {
     if(app.userHive) {
-      $scope.stepsData.push({
+      app.userHive.child('steps_data').push({
         readingDate: $scope.readingDate,
         stepsCount:  $scope.stepsCount
       });    	

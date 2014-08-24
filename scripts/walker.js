@@ -53,7 +53,7 @@ app.controller('AuthenticationController', function($scope) {
 
 });
 
-app.controller('ReadingsController', function($scope) {
+app.controller('ReadingsController', function($scope, $firebase) {
   $scope.readingDate = '20120101';
   $scope.stepsCount = '7415';
 

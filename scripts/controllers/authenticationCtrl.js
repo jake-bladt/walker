@@ -1,11 +1,3 @@
-var app = angular.module('walkerApp', ['firebase']);
-app.firebaseRef = new Firebase("https://blinding-torch-3484.firebaseio.com/");
-
-app.getUserHive = function(user) {
-  var usersHive = app.firebaseRef.child('users');
-  return usersHive.child(user.uid);
-};
-
 app.controller('AuthenticationController', function($scope) {
 
   function setLoggedInUser(user) {
@@ -56,37 +48,4 @@ app.controller('AuthenticationController', function($scope) {
     });
   };
 
-});
-
-app.controller('ReadingsController', function($scope, $firebase) {
-  $scope.readingDate = '20120101';
-  $scope.stepsCount = '7415';
-
-  $scope.$on('user-change', function(e, user) {
-    this.loggedInUser = user;
-  });
-
-  $scope.bindUser = function() {
-    if(this.loggedInUser) {
-      $scope.stepsSource = app.getUserHive(this.loggedInUser).child('steps_data');
-      $scope.stepsSource.$on('loaded', loadStepsData);
-      $scope.stepsSource.$on('change', loadStepsData);
-    }
-  };
-
-  function loadStepsData() {
-    $scope.stepsData = $scope.stepsSource.$asArray();
-  };
-
-  $scope.addReading = function() {
-    if(app.userHive) {
-      app.userHive.child('steps_data').push({
-        readingDate: $scope.readingDate,
-        stepsCount:  $scope.stepsCount
-      });    	
-
-      $scope.readingDate = '';
-      $scope.stepsCount = '';
-    }
-  }
 });

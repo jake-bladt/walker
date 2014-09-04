@@ -1,5 +1,5 @@
 var app = angular.module('walkerApp', ['firebase']);
-app.firebaseRef = new Firebase("https://sizzling-fire-3596.firebaseio.com");
+app.firebaseRef = new Firebase("https://blinding-torch-3484.firebaseio.com/");
 
 app.getUserHive = function(user) {
   var usersHive = app.firebaseRef.child('users');
@@ -8,21 +8,21 @@ app.getUserHive = function(user) {
 
 app.controller('AuthenticationController', function($scope) {
 
-  function setLoggedInUser = function(user) {
-    this.loggedInUser = user;
+  function setLoggedInUser(user) {
+    loggedInUser = user;
     $scope.$emit('user-change', user);
   };
 
   function identityCallback(error, user) {
     if(error) {
       $scope.authError = error;
-      this.setLoggedInUser(null);
+      setLoggedInUser(null);
       $scope.$apply(function() {
         $scope.currentUser = "guest";
         $scope.authError = error;
       });
     } else if(user) {
-      this.setLoggedInUser(user);
+      setLoggedInUser(user);
       $scope.$apply(function() {
       	$scope.currentUser = user.email;
         $scope.authError = null;

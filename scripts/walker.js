@@ -8,16 +8,21 @@ app.getUserHive = function(user) {
 
 app.controller('AuthenticationController', function($scope) {
 
+  function setLoggedInUser = function(user) {
+    this.loggedInUser = user;
+    $scope.$emit('user-change', user);
+  };
+
   function identityCallback(error, user) {
     if(error) {
       $scope.authError = error;
-      app.loggedInUser = null;
+      this.setLoggedInUser(null);
       $scope.$apply(function() {
         $scope.currentUser = "guest";
         $scope.authError = error;
       });
     } else if(user) {
-      app.loggedInUser = user;
+      this.setLoggedInUser(user);
       $scope.$apply(function() {
       	$scope.currentUser = user.email;
         $scope.authError = null;
@@ -57,20 +62,21 @@ app.controller('ReadingsController', function($scope, $firebase) {
   $scope.readingDate = '20120101';
   $scope.stepsCount = '7415';
 
-  $scope.init = function() {
-    if(app.loggedInUser) {
-      $scope.stepsSource = app.getUserHive(app.loggedInUser).child('steps_data');
+  $scope.$on('user-change', function(e, user) {
+    this.loggedInUser = user;
+  });
+
+  $scope.bindUser = function() {
+    if(this.loggedInUser) {
+      $scope.stepsSource = app.getUserHive(this.loggedInUser).child('steps_data');
       $scope.stepsSource.$on('loaded', loadStepsData);
       $scope.stepsSource.$on('change', loadStepsData);
     }
-    loadStepsData();
   };
 
   function loadStepsData() {
-    $scope.stepsData = [
-      {readingDate: '20120101', stepsCount: '6100' }
-    ];
-  }
+    $scope.stepsData = $scope.stepsSource.$asArray();
+  };
 
   $scope.addReading = function() {
     if(app.userHive) {

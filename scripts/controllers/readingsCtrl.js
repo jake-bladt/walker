@@ -17,7 +17,9 @@ app.controller('ReadingsController', function($scope, $firebase) {
   };
 
   function loadStepsData() {
-    $scope.stepsData = $scope.stepsSource.$asArray();
+    $scope.$apply(function() {
+      $scope.stepsData = $scope.stepsSource.$asArray();      
+    });
   };
 
   $scope.addReading = function() {

@@ -1,14 +1,16 @@
 app.controller('ReadingsController', function($scope, $firebase) {
+  var loggedInUser = null;
+
   $scope.readingDate = '20120101';
   $scope.stepsCount = '7415';
 
   $scope.$on('user-change', function(e, user) {
-    this.loggedInUser = user;
+    loggedInUser = user;
   });
 
   $scope.bindUser = function() {
-    if(this.loggedInUser) {
-      $scope.stepsSource = app.getUserHive(this.loggedInUser).child('steps_data');
+    if(loggedInUser) {
+      $scope.stepsSource = app.getUserHive(loggedInUser).child('steps_data');
       $scope.stepsSource.$on('loaded', loadStepsData);
       $scope.stepsSource.$on('change', loadStepsData);
     }
@@ -19,8 +21,8 @@ app.controller('ReadingsController', function($scope, $firebase) {
   };
 
   $scope.addReading = function() {
-    if(app.userHive) {
-      app.userHive.child('steps_data').push({
+    if(loggedInUser) {
+      $scope.stepsSource.push({
         readingDate: $scope.readingDate,
         stepsCount:  $scope.stepsCount
       });    	

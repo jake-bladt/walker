@@ -18,6 +18,7 @@
     "walking"
   ],
   "dependencies": {
-    "express": "^4.10.6"
+    "express": "^4.10.6",
+    "express-handlebars": "^1.1.0"
   }
 }

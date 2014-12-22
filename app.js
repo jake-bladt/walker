@@ -10,6 +10,8 @@ app.set('port', process.env.PORT || 3000);
 // Serve public assets
 app.use(express.static(__dirname + '/public'));
 
+app.get('/', function(req, res) {
+  res.render('home');
 
 // 404 catch-all handler (middleware)
 app.use(function(req, res, next){

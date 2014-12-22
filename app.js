@@ -1,4 +1,5 @@
 var express = require('express');
+
 var app = express();
 
 var handlebars = require('express-handlebars').create({ defaultLayout:'main' });
@@ -12,6 +13,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
   res.render('home');
+});
 
 // 404 catch-all handler (middleware)
 app.use(function(req, res, next){

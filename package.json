@@ -1,14 +1,23 @@
 {
   "name": "walker",
-  "version": "0.0.1.0",
+  "version": "0.0.1",
   "description": "An application for tracking health-related walking",
   "author": "Jake Bladt <jake@jakebladt.com>",
-  "contributors": [{
+  "contributors": [
+    {
       "name": "Jake Bladt",
       "email": "jake@jakebladt.com"
-    }],
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/jake-bladt/walker"
+  },
+  "keywords": [
+    "health",
+    "walking"
+  ],
+  "dependencies": {
+    "express": "^4.10.6"
   }
 }

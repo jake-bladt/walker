@@ -7,6 +7,10 @@ app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 3000);
 
+// Serve public assets
+app.use(express.static(__dirname + '/public'));
+
+
 // 404 catch-all handler (middleware)
 app.use(function(req, res, next){
   res.status(404);

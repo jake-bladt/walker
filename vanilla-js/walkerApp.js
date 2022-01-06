@@ -11,3 +11,5 @@ walkerApp.dailyStepCounts = {
 };
 
 
+// Page Actions
+console.log("The random number is " + Math.random());

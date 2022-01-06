@@ -10,7 +10,15 @@ walkerApp.dailyStepCounts = {
     "20220106": 1008
 };
 
-
 // Page Actions
-let rNum = Math.random();
-console.log(`The random number is ${rNum}`);
+document.addEventListener('DOMContentLoaded',
+    () => {
+        console.log('DOM loaded');
+
+        for(let dateSig in walkerApp.dailyStepCounts) {
+            if(walkerApp.dailyStepCounts.hasOwnProperty(dateSig)) {
+                console.log(dateSig, walkerApp.dailyStepCounts[dateSig]);
+            }
+        }
+    },
+    false);

@@ -1,4 +1,4 @@
-let walkerApp = {};
+const walkerApp = {};
 
 // This will eventually be loaded from the service
 walkerApp.dailyStepCounts = {
@@ -12,4 +12,5 @@ walkerApp.dailyStepCounts = {
 
 
 // Page Actions
-console.log("The random number is " + Math.random());
+let rNum = Math.random();
+console.log(`The random number is ${rNum}`);

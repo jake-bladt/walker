@@ -1,6 +1,0 @@
-Requirements
-An anonymous user can sign up for Walker.
-A signed-up user can sign in to Walker.
-A signed-in user can sign out of Walker.
-A signed-in user can enter and save any number of step counts consisting of three pieces of data: the date, the number of steps taken, and the associated user.
-Any user can see the steps data for any other user.

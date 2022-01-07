@@ -13,11 +13,17 @@ walkerApp.dailyStepCounts = {
 // Page Actions
 document.addEventListener('DOMContentLoaded',
     () => {
-        console.log('DOM loaded');
+
+        const table = document.getElementById('stepsTable');
 
         for(let dateSig in walkerApp.dailyStepCounts) {
             if(walkerApp.dailyStepCounts.hasOwnProperty(dateSig)) {
-                console.log(dateSig, walkerApp.dailyStepCounts[dateSig]);
+                let row = table.insertRow();
+                let dateCell = row.insertCell(0);
+                dateCell.innerHTML = dateSig;
+
+                let countCell = row.insertCell(1);
+                countCell.innerHTML = walkerApp.dailyStepCounts[dateSig];
             }
         }
     },

@@ -1,4 +1,19 @@
-const walkerApp = {};
+const walkerApp = {
+    pageActions: {
+        populateTable: (t) => {
+            for(let dateSig in walkerApp.dailyStepCounts) {
+                if(walkerApp.dailyStepCounts.hasOwnProperty(dateSig)) {
+                    let row = t.insertRow();
+                    let dateCell = row.insertCell(0);
+                    dateCell.innerHTML = dateSig;
+    
+                    let countCell = row.insertCell(1);
+                    countCell.innerHTML = walkerApp.dailyStepCounts[dateSig];
+                }
+            }
+        }
+    }
+};
 
 // This will eventually be loaded from the service
 walkerApp.dailyStepCounts = {
@@ -7,7 +22,7 @@ walkerApp.dailyStepCounts = {
     "20220103": 594,
     "20220104": 741,
     "20220105": 1264,
-    "20220106": 1008
+    "20220106": 1029
 };
 
 // Page Actions
@@ -15,16 +30,10 @@ document.addEventListener('DOMContentLoaded',
     () => {
 
         const table = document.getElementById('stepsTable');
-
-        for(let dateSig in walkerApp.dailyStepCounts) {
-            if(walkerApp.dailyStepCounts.hasOwnProperty(dateSig)) {
-                let row = table.insertRow();
-                let dateCell = row.insertCell(0);
-                dateCell.innerHTML = dateSig;
-
-                let countCell = row.insertCell(1);
-                countCell.innerHTML = walkerApp.dailyStepCounts[dateSig];
-            }
+        if(table) {
+            walkerApp.pageActions.populateTable(table);
+        } else {
+            console.error("Unable to find element stepsTable");
         }
     },
     false);

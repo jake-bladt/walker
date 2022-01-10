@@ -5,12 +5,21 @@ const walkerApp = {
                 if(walkerApp.dailyStepCounts.hasOwnProperty(dateSig)) {
                     let row = t.insertRow();
                     let dateCell = row.insertCell(0);
-                    dateCell.innerHTML = dateSig;
+                    dateCell.innerHTML = walkerApp.utilities.formattedDate(dateSig);
     
                     let countCell = row.insertCell(1);
                     countCell.innerHTML = walkerApp.dailyStepCounts[dateSig];
                 }
             }
+        }
+    },
+    utilities: {
+        formattedDate: (dateStamp) => {
+            let year = parseInt(dateStamp.substring(0, 4));
+            let month = parseInt(dateStamp.substring(4, 6)) - 1;
+            let day = parseInt(dateStamp.substring(6, 8));
+
+            return new Date(year, month, day);
         }
     }
 };

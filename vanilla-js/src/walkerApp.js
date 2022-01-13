@@ -5,7 +5,7 @@ const walkerApp = {
                 if(walkerApp.dailyStepCounts.hasOwnProperty(dateSig)) {
                     let row = t.insertRow();
                     let dateCell = row.insertCell(0);
-                    dateCell.innerHTML = walkerApp.utilities.formattedDate(dateSig);
+                    dateCell.innerHTML = walkerApp.utilities.stampedDate(dateSig).toyyyyMMdd();
     
                     let countCell = row.insertCell(1);
                     countCell.innerHTML = walkerApp.dailyStepCounts[dateSig];
@@ -14,12 +14,19 @@ const walkerApp = {
         }
     },
     utilities: {
-        formattedDate: (dateStamp) => {
-            let year = parseInt(dateStamp.substring(0, 4));
-            let month = parseInt(dateStamp.substring(4, 6)) - 1;
-            let day = parseInt(dateStamp.substring(6, 8));
 
-            return new Date(year, month, day);
+        stampedDate: (dateStamp) => {
+
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+            let yearPart = dateStamp.substring(0, 4);
+            let monthIndex = parseInt(dateStamp.substring(4, 6)) - 1;
+            let dayPart = dateStamp.substring(6, 8);
+            
+            return {
+                toDate: () => new Date(parseInt(year), monthIndex, parseInt(dayPart)),
+                toyyyyMMdd: () => `${dayPart}-${months[monthIndex]}-${yearPart}`
+            }
         }
     }
 };

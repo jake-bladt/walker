@@ -24,7 +24,7 @@ const walkerApp = {
             let dayPart = dateStamp.substring(6, 8);
             
             return {
-                toDate: () => new Date(parseInt(year), monthIndex, parseInt(dayPart)),
+                toDate: () => new Date(parseInt(yearPart), monthIndex, parseInt(dayPart)),
                 toyyyyMMdd: () => `${dayPart}-${months[monthIndex]}-${yearPart}`
             }
         }

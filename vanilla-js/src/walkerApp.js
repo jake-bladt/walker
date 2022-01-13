@@ -1,3 +1,5 @@
+"use strict";
+
 const walkerApp = {
     pageActions: {
         populateTable: (t) => {

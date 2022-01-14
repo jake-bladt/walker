@@ -10,7 +10,7 @@ const walkerApp = {
                     dateCell.innerHTML = walkerApp.utilities.stampedDate(dateSig).toyyyyMMdd();
     
                     let countCell = row.insertCell(1);
-                    countCell.innerHTML = walkerApp.dailyStepCounts[dateSig];
+                    countCell.innerHTML = walkerApp.dailyStepCounts[dateSig].toLocaleString('en-US');
                 }
             }
         }
@@ -47,7 +47,7 @@ walkerApp.dailyStepCounts = {
     "20220110": 2181,
     "20220111": 241,
     "20220112": 504,
-    "20220113": 158
+    "20220113": 1022
 };
 
 // Page Actions

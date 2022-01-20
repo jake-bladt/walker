@@ -15,6 +15,23 @@ const walkerApp = {
             }
         }
     },
+    stats: () => {
+        let vals = [];
+        let counts = [];
+
+        for(let dateSig in walkerApp.dailyStepCounts) {
+            if(walkerApp.dailyStepCounts.hasOwnProperty(dateSig)) {
+                vals.push(walkerApp.dailyStepCounts[dateSig]);
+                counts.push({ 
+                    "formattedDate": walkerApp.utilities.stampedDate(dateSig).toyyyyMMdd(),
+                    "count": walkerApp.dailyStepCounts[dateSig]
+                });
+            }
+        }
+
+
+
+    },
     utilities: {
 
         stampedDate: (dateStamp) => {
@@ -53,7 +70,8 @@ walkerApp.dailyStepCounts = {
     "20220116": 165,
     "20220117": 320,
     "20220118": 1116,
-    "20220119": 2232
+    "20220119": 2232,
+    "20220120": 1124
 };
 
 // Page Actions

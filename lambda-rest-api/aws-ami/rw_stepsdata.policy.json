@@ -2,7 +2,7 @@
     "Version": "2012-10-17",
     "Statement": [
       {
-        "Sid": "Stmt1428341300017",
+        "Sid": "Custom20220320p01d01",
         "Action": [
           "dynamodb:DeleteItem",
           "dynamodb:GetItem",
@@ -26,4 +26,3 @@
       }
     ]
   }
-  

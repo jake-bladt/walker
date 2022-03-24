@@ -15,7 +15,7 @@
         "Resource": "arn:aws:dynamodb:us-east-1:996744466666:table/walker_steps_data"
       },
       {
-        "Sid": "",
+        "Sid": "Custom20220320p02d01",
         "Resource": "*",
         "Action": [
           "logs:CreateLogGroup",
